@@ -1,0 +1,38 @@
+spring:
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/pokemon?serverTimezone=UTC
+    username: root
+    password: rootroot
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: '@project.name@'
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, configprops, logfile, metrics, env, loggers, httptrace, mappings, threaddump
+    application:
+  version: '@project.version@'
+  timezone: ${user.timezone}
+
+server:
+  port: 8080
+  ssl:
+    enabled: false
+    #servlet:
+    #context-path: /asmar
+
